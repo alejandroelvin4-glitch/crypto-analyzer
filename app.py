@@ -112,10 +112,6 @@ if st.button("🔄 Escanear Mercado"):
 
                 "Explosividad":
                 round(explosividad, 1)
-
-                 "Entrada":
-                round(entrada, 1)
-          
             })
 
         df = pd.DataFrame(resultados)
