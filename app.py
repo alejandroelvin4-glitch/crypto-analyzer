@@ -74,11 +74,10 @@ if st.button("🔄 Escanear Mercado"):
                 100,
                 abs(cambio) * 3
                 + volumen_ratio * 200
-            )
-           
-            entrada = "🟡 ESPERAR"
+       
+                entrada = "🟡 ESPERAR"
 
-if (
+  if (
     pump_score > 70
     and dump_score < 30
     and explosividad > 60
@@ -91,6 +90,7 @@ elif (
     and explosividad > 60
 ):
     entrada = "🔴 SHORT"
+            )
 
             if cambio > 3:
                 sesgo = "LONG"
@@ -128,10 +128,10 @@ elif (
 
                 "Explosividad":
                 round(explosividad, 1)
-             
+               
                 "Entrada":
-    entrada
-})
+                entrada
+            })
 
         df = pd.DataFrame(resultados)
 
@@ -142,57 +142,6 @@ tab1, tab2, tab3, tab4, tab5 = st.tabs([
     "💥 Dumps",
     "📊 Mercado"
 ])
-        with tab1:
-
-    st.dataframe(
-        df[df["Entrada"] == "🟢 LONG"]
-        .sort_values(
-            "Pump",
-            ascending=False
-        ),
-        use_container_width=True
-    )
-
-with tab2:
-
-    st.dataframe(
-        df[df["Entrada"] == "🔴 SHORT"]
-        .sort_values(
-            "Dump",
-            ascending=False
-        ),
-        use_container_width=True
-    )
-
-with tab3:
-
-    st.dataframe(
-        df.sort_values(
-            "Pump",
-            ascending=False
-        ).head(20),
-        use_container_width=True
-    )
-
-with tab4:
-
-    st.dataframe(
-        df.sort_values(
-            "Dump",
-            ascending=False
-        ).head(20),
-        use_container_width=True
-    )
-
-with tab5:
-
-    st.dataframe(
-        df.sort_values(
-            "Explosividad",
-            ascending=False
-        ),
-        use_container_width=True
-)
 
     except Exception as e:
 
