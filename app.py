@@ -42,22 +42,6 @@ if st.button("🔄 Escanear Mercado"):
                 0
             )
 
-            entrada = "🟡 ESPERAR"
-
-if (
-    pump_score > 70
-    and dump_score < 30
-    and explosividad > 60
-):
-    entrada = "🟢 LONG"
-
-elif (
-    dump_score > 70
-    and pump_score < 30
-    and explosividad > 60
-):
-    entrada = "🔴 SHORT"
-
             volumen = coin.get(
                 "total_volume",
                 0
@@ -129,19 +113,42 @@ elif (
                 "Explosividad":
                 round(explosividad, 1)
 
-                "Entrada":
+                 "Entrada":
                 round(entrada, 1)
+          
             })
-        
+
         df = pd.DataFrame(resultados)
 
-tab1, tab2, tab3, tab4, tab5 = st.tabs([
-    "🔥 Top Longs",
-    "⚠️ Top Shorts",
-    "🚀 Pumps",
-    "💥 Dumps",
-    "📊 Mercado"
-])
+        st.subheader("🔥 Ranking General")
+
+        st.dataframe(
+            df.sort_values(
+                "Explosividad",
+                ascending=False
+            ),
+            use_container_width=True
+        )
+
+        st.subheader("🚀 Posibles Pumps")
+
+        st.dataframe(
+            df.sort_values(
+                "Pump",
+                ascending=False
+            ).head(10),
+            use_container_width=True
+        )
+
+        st.subheader("💥 Posibles Dumps")
+
+        st.dataframe(
+            df.sort_values(
+                "Dump",
+                ascending=False
+            ).head(10),
+            use_container_width=True
+        )
 
     except Exception as e:
 
