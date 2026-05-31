@@ -143,36 +143,6 @@ tab1, tab2, tab3, tab4, tab5 = st.tabs([
     "📊 Mercado"
 ])
 
-       st.subheader("🔥 Ranking General")
-
-        st.dataframe(
-            df.sort_values(
-                "Explosividad",
-                ascending=False
-            ),
-            use_container_width=True
-        )
-
-        st.subheader("🚀 Posibles Pumps")
-
-        st.dataframe(
-            df.sort_values(
-                "Pump",
-                ascending=False
-            ).head(10),
-            use_container_width=True
-        )
-
-        st.subheader("💥 Posibles Dumps")
-
-        st.dataframe(
-            df.sort_values(
-                "Dump",
-                ascending=False
-            ).head(10),
-            use_container_width=True
-        )
-
     except Exception as e:
 
         st.error(str(e))
