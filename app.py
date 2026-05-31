@@ -113,22 +113,6 @@ if st.button("🔄 Escanear Mercado"):
                 "Explosividad":
                 round(explosividad, 1)
             })
-
-entrada = "🟡 ESPERAR"
-
-if (
-    pump_score > 70
-    and dump_score < 30
-    and explosividad > 60
-):
-    entrada = "🟢 LONG"
-
-elif (
-    dump_score > 70
-    and pump_score < 30
-    and explosividad > 60
-):
-    entrada = "🔴 SHORT"
         
         df = pd.DataFrame(resultados)
 
