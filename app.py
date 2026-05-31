@@ -128,11 +128,22 @@ elif (
 
                 "Explosividad":
                 round(explosividad, 1)
+
+                "Entrada":
+                round(entrada, 1)
             })
         
         df = pd.DataFrame(resultados)
 
-        st.subheader("🔥 Ranking General")
+tab1, tab2, tab3, tab4, tab5 = st.tabs([
+    "🔥 Top Longs",
+    "⚠️ Top Shorts",
+    "🚀 Pumps",
+    "💥 Dumps",
+    "📊 Mercado"
+])
+
+       st.subheader("🔥 Ranking General")
 
         st.dataframe(
             df.sort_values(
