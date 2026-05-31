@@ -1,26 +1,27 @@
 import streamlit as st
 import requests
 
-st.title("Prueba Binance Futures")
+st.title("Prueba de Datos")
 
 try:
+    url = "https://api.coingecko.com/api/v3/coins/markets"
 
-    url = "https://fapi.binance.com/fapi/v1/exchangeInfo"
+    params = {
+        "vs_currency": "usd",
+        "order": "market_cap_desc",
+        "per_page": 10,
+        "page": 1
+    }
 
-    data = requests.get(url, timeout=10).json()
+    data = requests.get(url, params=params).json()
 
-    symbols = []
+    st.success("Conexión exitosa")
 
-    for s in data["symbols"]:
-        if (
-            s["contractType"] == "PERPETUAL"
-            and s["symbol"].endswith("USDT")
-        ):
-            symbols.append(s["symbol"])
-
-    st.success(f"Contratos encontrados: {len(symbols)}")
-
-    st.write(symbols[:50])
+    for coin in data:
+        st.write(
+            coin["symbol"].upper(),
+            coin["current_price"]
+        )
 
 except Exception as e:
     st.error(str(e))
